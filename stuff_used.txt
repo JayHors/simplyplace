@@ -1,0 +1,4 @@
+https://stackoverflow.com/questions/43431550/async-await-class-constructor
+https://stackoverflow.com/questions/30857150/getting-google-maps-link-from-place-id
+https://stackoverflow.com/questions/3357553/how-do-i-store-an-array-in-localstorage
+https://bulma.io/documentation/components/navbar/#navbar-helper-classes

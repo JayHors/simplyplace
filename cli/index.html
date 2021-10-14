@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="css/main-style.css">
+    <script type="module" src="js/app.js"></script>
+    <title>SimplyPlace</title>
+</head>
+
+<body class="has-navbar-fixed-top">
+    <place-nav data-active="app"></place-nav>
+    <div class="pt-5">
+        <div class="container" id="cardHolder">
+            <place-card>
+                <button id="prev" class="button card-footer-item is-primary" disabled>Previous</button>
+                <button id="save" class="button card-footer-item is-warning" disabled>Save</button>
+                <button id="next" class="button card-footer-item is-primary" disabled>Next</button>
+            </place-card>
+        </div>
+    </div>
+    <div class="level pt-5">
+        <div class="level-item">
+            <button class="button is-primary is-large" id="call">Search Nearby</button>
+        </div>
+    </div>
+    <div class="level">
+        <div class="level-item">
+            <div class="control">
+                <input type="radio" id="gas" name="place_type" value="gas_station" checked>
+                <label for="gas">Gas Station</label><br />
+                <input type="radio" id="atm" name="place_type" value="atm">
+                <label for="atm">ATM</label><br />
+                <input type="radio" id="lodging" name="place_type" value="lodging">
+                <label for="lodging">Hotel/Motel</label><br />
+                <input type="radio" id="lawyer" name="place_type" value="lawyer">
+                <label for="lawyer">Lawyer</label><br />
+                <input type="radio" id="airport" name="place_type" value="airport">
+                <label for="airport">Airport</label><br />
+                <input type="radio" id="cafe" name="place_type" value="cafe">
+                <label for="cafe">Cafe</label><br />
+            </div>
+        </div>
+    </div>
+    <place-footer class="p-1" data-year="2021" data-text="Jay Horsfall"></place-footer>
+</body>
+
+</html>

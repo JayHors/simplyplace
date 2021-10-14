@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+*{
+    font-family: 'Lato', sans-serif;
+}
+
+place-footer{
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+}
+input, label, br{
+    user-select: none;
+}
+#place-area{
+    text-align: center;
+}
+@media only screen and (max-width: 800px) {
+    place-footer{
+        display: none;
+    }
+}
+

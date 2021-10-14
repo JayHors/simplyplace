@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
+    <link rel="stylesheet" href="css/main-style.css">
+    <script type="module" src="js/home.js"></script>
+    <title>Document</title>
+</head>
+<body class="has-navbar-fixed-top">
+    <place-nav data-active="docs"></place-nav>
+    <div class="columns pt-3">
+        <div class="column">
+            <a class="button" href="https://github.com/tonethar/IGME-330-Fall-2021/blob/main/projects/project-1.md">Project Requirements</a><br/>
+            <em>Resources Utilized</em><br/>
+            I used the <a href="https://developer.mozilla.org">MDN Docs</a>, <a href="https://stackoverflow.com">Stack Overflow</a>, and <a href="https://bulma.io">Bulma</a> extensively for code reference and troubleshooting this client. The <a href="https://www.php.net/docs.php">PHP Docs</a> were used extensively for the proxy server.  
+            Specific links can be found in <a href="../stuff_used.txt">this document.</a><br/>
+            The font used is the <a href="https://fonts.google.com/specimen/Lato">Lato font from Google Fonts.</a><br/>
+            Powered by Google logo is provided by Google and required for TOS-compliant use of the API.<br/>
+            Simplyplace logo is drawn by me!<br/>
+            <em>API</em><br/>
+            <a href="https://developers.google.com/maps/documentation/places/web-service/search-nearby">Nearby Search API</a><br/>
+            <a href="https://developers.google.com/maps/documentation/places/web-service/details">Place Details API</a><br/>
+            <a href="https://developers.google.com/maps">Google Maps Platform homepage</a><br/>
+            You need to use an API key and likely a proxy server for anything provided by Google.
+        </div>
+        <div class="column">
+            <em>Noteworthy</em><br/>
+            This project utilizes custom elements for the header, footer, and card (on app page), and the card uses slots to insert the buttons into it.<br/>
+            Uses fetch to call a custom proxy server that serves <em>both</em> GMP API endpoints used for this project.<br/>
+            The Bulma framework is used in all parts of the site, even here!<br/>
+            I am really proud of my progress so far. All project requirements have been met and I wrote a PHP server script that can serve multiple API endpoints.<br/>
+            <em>Grading</em><br/>
+            Like I said, I have met all requirements (custom elements, images, fonts, and conventions, along with Bulma, localStorage, and fetch) AND I learned some beginner PHP on the way.<br/>
+            I feel the input requirements have also been met, with one of the inputs being the user's geolocation, and then the type selector and the next/previous buttons being the other ones that are obvious.<br/>
+            <em>TODO</em><br/>
+            <ul>
+                <li>Finished version of logo</li>
+                <li>Add photos when available from place photos</li>
+                <li>Allow for other locations to be put in (maybe with another API?)</li>
+            </ul>
+        </div>
+    </div>
+    <place-footer data-year="2021" data-text="Jay Horsfall"></place-footer>
+</body>
+</html>
