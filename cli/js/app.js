@@ -2,9 +2,10 @@ import * as PlaceFooter from './place-footer.js'; //imports from submodules
 import * as PlaceNav from './place-nav.js';
 import * as PlaceObj from './place.js';
 import * as PlaceCard from './place-card.js';
+import * as fireDb from './firebase.js';
 
 let callBtn = document.querySelector("#call");  //various DOM elements that need to be called
-let pCard  = document.querySelector("place-card");
+let pCard = document.querySelector("place-card");
 let nextBtn = document.querySelector("#next");
 let prevBtn = document.querySelector("#prev");
 let saveBtn = document.querySelector("#save");
@@ -15,40 +16,49 @@ let storKey = "jlh6319-places";
 let placeArray = [];
 let placeIndex = 0;
 
-if(!stor.getItem(storKey)){
+if (!stor.getItem(storKey)) {
     stor.setItem(storKey, JSON.stringify([]));
 }
 
-if (!('geolocation' in navigator)) {
+
+if (geo == undefined) {
     pCard.dataset.name = "<em>Your browser doesn't support geolocation.</em>";
 }
 else {
-    callBtn.onclick = newSearchInit;
-    nextBtn.onclick = () => {
-        placeIndex++;
-        if(placeIndex > 0 && prevBtn.disabled){
-            prevBtn.disabled = false;
+    geo.getCurrentPosition(() => {
+        pCard.style.visibility = "hidden";
+        callBtn.disabled = false;
+        callBtn.onclick = newSearchInit;
+        nextBtn.onclick = () => {
+            placeIndex++;
+            if (placeIndex > 0 && prevBtn.disabled) {
+                prevBtn.disabled = false;
+            }
+            if (placeIndex >= (placeArray.length - 1)) {
+                nextBtn.disabled = true;
+            }
+            loadPlaceDetails(placeIndex);
+            saveBtn.innerHTML = "Save";
         }
-        if(placeIndex >= (placeArray.length - 1)){
-            nextBtn.disabled = true;
+        prevBtn.onclick = () => {
+            placeIndex -= 1;
+            if (placeIndex == 0) {
+                prevBtn.disabled = true;
+            }
+            if (placeIndex < (placeArray.length - 1) && nextBtn.disabled) {
+                nextBtn.disabled = false;
+            }
+            loadPlaceDetails(placeIndex);
+            saveBtn.innerHTML = "Save";
         }
-        loadPlaceDetails(placeIndex);
-        saveBtn.innerHTML = "Save";
-    }
-    prevBtn.onclick = () => {
-        placeIndex-= 1;
-        if(placeIndex == 0){
-            prevBtn.disabled = true;
-        }
-        if(placeIndex < (placeArray.length - 1) && nextBtn.disabled){
-            nextBtn.disabled = false;
-        }
-        loadPlaceDetails(placeIndex);
-        saveBtn.innerHTML = "Save";
-    }
-    saveBtn.onclick = ()=>{
-        savePlace(pCard.dataset.pid, pCard.dataset.type);
-    };
+        saveBtn.onclick = () => {
+            savePlace(pCard.dataset.pid, pCard.dataset.type);
+        };
+        console.log(fireDb.app);
+    },
+    () => {
+        pCard.dataset.name = "<em>You need to enable location data.</em>";
+    })
 }
 
 
@@ -76,8 +86,9 @@ async function geolockCallback(position) {
             loadPlaceDetails(placeIndex);
             callBtn.classList.remove("is-loading");
             saveBtn.disabled = false;
-            if(placeArray.length > 1) nextBtn.disabled = false;
+            if (placeArray.length > 1) nextBtn.disabled = false;
             saveBtn.innerHTML = "Save";
+            pCard.style.visibility = "";
         });
 }
 

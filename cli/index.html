@@ -13,36 +13,37 @@
 
 <body class="has-navbar-fixed-top">
     <place-nav data-active="app"></place-nav>
-    <div class="pt-5">
-        <div class="container" id="cardHolder">
-            <place-card>
-                <button id="prev" class="button card-footer-item is-primary" disabled>Previous</button>
-                <button id="save" class="button card-footer-item is-warning" disabled>Save</button>
-                <button id="next" class="button card-footer-item is-primary" disabled>Next</button>
-            </place-card>
+    <div class="container pt-5" id="cardHolder">
+        <place-card>
+            <button id="prev" class="button card-footer-item is-primary" disabled>Previous</button>
+            <button id="save" class="button card-footer-item is-warning" disabled>Save</button>
+            <button id="next" class="button card-footer-item is-primary" disabled>Next</button>
+        </place-card>
+    </div>
+    <div class="level pt-5">
+        <div class="level-item">
+            <div class="control">
+                <fieldset>
+                    <legend class="title">Place Type</legend>
+                    <input type="radio" id="gas" name="place_type" value="gas_station" checked>
+                    <label for="gas">Gas Station</label><br />
+                    <input type="radio" id="atm" name="place_type" value="atm">
+                    <label for="atm">ATM</label><br />
+                    <input type="radio" id="lodging" name="place_type" value="lodging">
+                    <label for="lodging">Hotel/Motel</label><br />
+                    <input type="radio" id="lawyer" name="place_type" value="lawyer">
+                    <label for="lawyer">Lawyer</label><br />
+                    <input type="radio" id="airport" name="place_type" value="airport">
+                    <label for="airport">Airport</label><br />
+                    <input type="radio" id="cafe" name="place_type" value="cafe">
+                    <label for="cafe">Cafe</label><br />
+                </fieldset>
+            </div>
         </div>
     </div>
     <div class="level pt-5">
         <div class="level-item">
-            <button class="button is-primary is-large" id="call">Search Nearby</button>
-        </div>
-    </div>
-    <div class="level">
-        <div class="level-item">
-            <div class="control">
-                <input type="radio" id="gas" name="place_type" value="gas_station" checked>
-                <label for="gas">Gas Station</label><br />
-                <input type="radio" id="atm" name="place_type" value="atm">
-                <label for="atm">ATM</label><br />
-                <input type="radio" id="lodging" name="place_type" value="lodging">
-                <label for="lodging">Hotel/Motel</label><br />
-                <input type="radio" id="lawyer" name="place_type" value="lawyer">
-                <label for="lawyer">Lawyer</label><br />
-                <input type="radio" id="airport" name="place_type" value="airport">
-                <label for="airport">Airport</label><br />
-                <input type="radio" id="cafe" name="place_type" value="cafe">
-                <label for="cafe">Cafe</label><br />
-            </div>
+            <button class="button is-primary is-large" id="call" disabled>Search Nearby</button>
         </div>
     </div>
     <place-footer class="p-1" data-year="2021" data-text="Jay Horsfall"></place-footer>

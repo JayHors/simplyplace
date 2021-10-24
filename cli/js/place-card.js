@@ -3,7 +3,7 @@ template.innerHTML = `
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.min.css">
     <div class="card">
         <header class="card-header">
-            <div class="card-header-title">
+            <div class="card-header-title title">
                 
             </div>
         </header>
@@ -56,7 +56,7 @@ class PlaceCard extends HTMLElement{
             Phone Number: ${number} <br/>
             Address: ${address} <br/>
             Place type: ${type} <br/>
-            <a class="button is-info" href="https://www.google.com/maps/place/?q=place_id:${pid}">Place on Google Maps</a>
+            <a class="button is-info" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address)}&query_place_id=${encodeURIComponent(pid)}" target="_blank">Place on Google Maps</a>
         `;
     }
     static get observedAttributes(){
