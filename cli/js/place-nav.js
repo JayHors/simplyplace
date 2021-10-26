@@ -40,6 +40,9 @@ template.innerHTML = `
         </div>
 
         <div class="navbar-end">
+            <div class="navbar-item">
+                <slot></slot>
+            </div>
             <a class="navbar-item" href="https://maps.google.com/help/terms_maps/">
                 Google Maps Platform TOS
             </a>

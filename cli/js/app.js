@@ -9,6 +9,9 @@ let pCard = document.querySelector("place-card");
 let nextBtn = document.querySelector("#next");
 let prevBtn = document.querySelector("#prev");
 let saveBtn = document.querySelector("#save");
+let signInBtn = document.querySelector("#GSignIn");
+let signOutBtn = document.querySelector("#GSignOut");
+let favesTestBtn = document.querySelector("#faves");
 let geo = navigator.geolocation;
 let stor = localStorage;
 let storKey = "jlh6319-places";
@@ -16,11 +19,27 @@ let storKey = "jlh6319-places";
 let placeArray = [];
 let placeIndex = 0;
 
+//localStorage
 if (!stor.getItem(storKey)) {
     stor.setItem(storKey, JSON.stringify([]));
 }
+if(fireDb.isSignedIn){
+    signOutBtn.disabled = false;
+    signInBtn.disabled = true;
+}
 
-
+//setup buttons and acquire user consent for location access
+signInBtn.onclick = () => {
+    fireDb.signIn();
+    signInBtn.disabled = true;
+    signOutBtn.disabled = false;
+};
+signOutBtn.onclick = () => {
+    fireDb.signOut();
+    signInBtn.disabled = false;
+    signOutBtn.disabled = true;
+};
+favesTestBtn.onclick = async () => { favesTestBtn.innerHTML = await fireDb.getFaves() };
 if (geo == undefined) {
     pCard.dataset.name = "<em>Your browser doesn't support geolocation.</em>";
 }
@@ -54,11 +73,10 @@ else {
         saveBtn.onclick = () => {
             savePlace(pCard.dataset.pid, pCard.dataset.type);
         };
-        console.log(fireDb.app);
     },
-    () => {
-        pCard.dataset.name = "<em>You need to enable location data.</em>";
-    })
+        () => {
+            pCard.dataset.name = "<em>You need to enable location data.</em>";
+        })
 }
 
 
@@ -103,9 +121,14 @@ async function loadPlaceDetails(index) {
 }
 
 function savePlace(pid, type) {
-    let currentStor = JSON.parse(stor.getItem(storKey));
-    currentStor.push([pid, type]);
-    stor.setItem(storKey, JSON.stringify(currentStor));
+    if (fireDb.isSignedIn) {
+        fireDb.addFave(pid, type);
+    }
+    else {
+        let currentStor = JSON.parse(stor.getItem(storKey));
+        currentStor.push([pid, type]);
+        stor.setItem(storKey, JSON.stringify(currentStor));
+    }
     saveBtn.innerHTML = "Saved!";
 }
 customElements.define('place-footer', PlaceFooter.PlaceFooter);

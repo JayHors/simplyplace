@@ -12,7 +12,10 @@
 </head>
 
 <body class="has-navbar-fixed-top">
-    <place-nav data-active="app"></place-nav>
+    <place-nav data-active="app">
+        <button id="GSignIn" class="button is-info">Sign In With Google</button>
+        <button id="GSignOut" class="button is-danger" disabled>Sign Out</button>
+    </place-nav>
     <div class="container pt-5" id="cardHolder">
         <place-card>
             <button id="prev" class="button card-footer-item is-primary" disabled>Previous</button>
@@ -44,6 +47,7 @@
     <div class="level pt-5">
         <div class="level-item">
             <button class="button is-primary is-large" id="call" disabled>Search Nearby</button>
+            <button class="button is-info is-large" id="faves">Faves Test</button>
         </div>
     </div>
     <place-footer class="p-1" data-year="2021" data-text="Jay Horsfall"></place-footer>

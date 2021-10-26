@@ -3,3 +3,4 @@ https://stackoverflow.com/questions/30857150/getting-google-maps-link-from-place
 https://stackoverflow.com/questions/3357553/how-do-i-store-an-array-in-localstorage
 https://bulma.io/documentation/components/navbar/#navbar-helper-classes
 https://stackoverflow.com/questions/13273806/using-the-html-label-tag-with-radio-buttons
+https://firebase.google.com/docs/auth/web/google-signin?authuser=0

@@ -1,5 +1,3 @@
-let stor = localStorage;
-let storKey = "jlh6319-places";
 class placeObj {
     pid;
     type;
