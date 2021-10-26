@@ -10,6 +10,7 @@ let htmlStr = "";
 let favoritesArray;
 let signInBtn = document.querySelector("#GSignIn");
 let signOutBtn = document.querySelector("#GSignOut");
+let deleteBtn = document.querySelector("#delete");
 
 if(fireDb.isSignedIn){
     signOutBtn.disabled = false;
@@ -53,7 +54,10 @@ for(let favorite of favoritesArray){
 
 colDiv.innerHTML = htmlStr;
 
-document.querySelector("#delete").onclick = () => {
+deleteBtn.classList.remove("is-loading");
+deleteBtn.disabled = false;
+deleteBtn.onclick = async() => {
+    await fireDb.deleteFaves();
     localStorage.setItem("jlh6319-places", JSON.stringify([]));
     alert("Favorites cleared, page will reload.");
     location.reload();

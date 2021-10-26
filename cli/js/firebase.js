@@ -2,7 +2,7 @@
 // Import the functions you need from the SDKs you need
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-app.js";
 import { GoogleAuthProvider, getAuth, signInWithPopup } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-auth.js";
-import { getDatabase, ref, set, get, child, push, onValue } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js";
+import { getDatabase, ref, set, get, child, push, onValue, remove } from "https://www.gstatic.com/firebasejs/9.1.3/firebase-database.js";
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -61,4 +61,8 @@ export async function getFaves(){
 export async function addFave(pid, place_type){
     const db = getDatabase();
     push(ref(db, `users/${userUid}/faves`), [pid, place_type]);
+}
+export async function deleteFaves(){
+    const db = getDatabase();
+    return remove(ref(db, `users/${userUid}/faves`));
 }
