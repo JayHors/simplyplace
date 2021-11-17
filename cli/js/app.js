@@ -11,10 +11,10 @@ let prevBtn = document.querySelector("#prev");
 let saveBtn = document.querySelector("#save");
 let signInBtn = document.querySelector("#GSignIn");
 let signOutBtn = document.querySelector("#GSignOut");
-let favesTestBtn = document.querySelector("#faves");
 let geo = navigator.geolocation;
 let stor = localStorage;
 let storKey = "jlh6319-places";
+let stateKey = "jlh6319-SPstate";
 
 let placeArray = [];
 let placeIndex = 0;
@@ -23,11 +23,23 @@ let placeIndex = 0;
 if (!stor.getItem(storKey)) {
     stor.setItem(storKey, JSON.stringify([]));
 }
-if(fireDb.isSignedIn){
+if (fireDb.isSignedIn) {
     signOutBtn.disabled = false;
     signInBtn.disabled = true;
 }
-
+if (!stor.getItem(stateKey)) {
+    stor.setItem(stateKey, JSON.stringify({
+        checkedID: "#gas"
+    }));
+} else {
+    let prevState = JSON.parse(stor.getItem(stateKey));
+    document.querySelector(`#${prevState.checkedID}`).checked = true;
+}
+window.onunload = () => {
+    stor.setItem(stateKey,JSON.stringify({
+        checkedID: `${document.querySelector('input[name=place_type]:checked').id}`
+    }));
+}
 //setup buttons and acquire user consent for location access
 signInBtn.onclick = () => {
     fireDb.signIn();
@@ -39,7 +51,6 @@ signOutBtn.onclick = () => {
     signInBtn.disabled = false;
     signOutBtn.disabled = true;
 };
-favesTestBtn.onclick = async () => { favesTestBtn.innerHTML = await fireDb.getFaves() };
 if (geo == undefined) {
     pCard.dataset.name = "<em>Your browser doesn't support geolocation.</em>";
 }
@@ -119,7 +130,6 @@ async function loadPlaceDetails(index) {
     pCard.dataset.type = place.type;
     pCard.dataset.pid = place.pid;
 }
-
 function savePlace(pid, type) {
     if (fireDb.isSignedIn) {
         fireDb.addFave(pid, type);
